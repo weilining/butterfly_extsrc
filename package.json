@@ -1,0 +1,26 @@
+{
+  "name": "butterfly-extsrc",
+  "version": "1.0.0",
+  "description": "The external resource of hexo-theme-butterfly",
+  "main": "package.json",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hexo",
+    "butterfly",
+    "Jerry",
+    "hexo-theme-butterfly"
+  ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/jerryc127/butterfly_extsrc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jerryc127/butterfly_extsrc/issues",
+    "email": "wong@jerryc.me"
+  },
+  "homepage": "https://demo.jerryc.me/",
+  "author": "Jerry <wong@jerryc.me>",
+  "license": "Apache-2.0"
+}
