@@ -1,11 +1,11 @@
-$(function () {
+(function () {
   var script = document.getElementById('click-show-text')
   var mb = script.getAttribute('mobile')
   if (mb === 'false' && /Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
     return
   }
 
-  const co = function () {
+  const randomColor = function () {
     const colorElements = '0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f'
     const colorArray = colorElements.split(',')
     let color = '#'
@@ -17,36 +17,52 @@ $(function () {
 
   let aIdx = 0
 
-  const $body = $('body')
-
-  $($body).on('click', function (e) {
+  document.body.addEventListener('click', function (e) {
     const config = GLOBAL_CONFIG.ClickShowText
-    const a = config.text.split(',')
-    const $i = $('<span/>').text(a[aIdx])
-    aIdx = (aIdx + 1) % a.length
+    const text = config.text.split(',')
+    const $span = document.createElement('span')
+    if (config.random) {
+      aIdx = Math.floor(Math.random() * text.length)
+      $span.textContent = text[aIdx]
+    } else {
+      $span.textContent = text[aIdx]
+      aIdx = (aIdx + 1) % text.length
+    }
+
     const x = e.pageX
     const y = e.pageY
-    $i.css({
-      'z-index': 150,
-      top: y - 20,
-      left: x - 20,
-      position: 'absolute',
-      'font-weight': 'bold',
-      color: co(),
-      cursor: 'default',
-      'font-size': config.fontSize || 'inherit',
-      'word-break': 'break-word'
-    })
-    $body.append($i)
-    $i.animate(
-      {
-        top: y - 180,
-        opacity: 0
-      },
-      1500,
-      function () {
-        $i.remove()
+    let top = y - 20
+
+    $span.style.cssText = `
+      z-index: 150;
+      top: ${top}px;
+      left: ${x - 20}px;
+      position: absolute;
+      font-weight: bold;
+      color: ${randomColor()};
+      cursor: default;
+      font-size: ${config.fontSize || 'inherit'};
+      word-break: break-word;
+    `
+    this.appendChild($span)
+
+    // animation
+    const initTime = new Date().getTime()
+    let opacityValue = 1
+
+    function animate () {
+      top--
+      opacityValue = opacityValue - 0.02
+      $span.style.top = top + 'px'
+      $span.style.opacity = opacityValue
+      const newTime = (new Date()).getTime()
+      const diff = newTime - initTime
+      if (diff < 600) {
+        window.requestAnimationFrame(animate)
+      } else {
+        $span.remove()
       }
-    )
+    }
+    window.requestAnimationFrame(animate)
   })
-})
+})()
