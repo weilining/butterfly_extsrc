@@ -1,7 +1,25 @@
 (function () {
-  var script = document.getElementById('click-show-text')
-  var mb = script.getAttribute('mobile')
-  if (mb === 'false' && /Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  const $dom = document.getElementById('click-show-text')
+  let config = null
+  // old version
+  if ($dom.getAttribute('mobile') !== null) {
+    config = {
+      mobile: $dom.getAttribute('mobile'),
+      text: GLOBAL_CONFIG.ClickShowText.text,
+      fontSize: GLOBAL_CONFIG.ClickShowText.fontSize,
+      random: GLOBAL_CONFIG.ClickShowText.random
+    }
+  } else {
+    // new version
+    config = {
+      mobile: $dom.getAttribute('data-mobile'),
+      text: $dom.getAttribute('data-text'),
+      fontSize: $dom.getAttribute('data-fontsize'),
+      random: $dom.getAttribute('data-random')
+    }
+  }
+
+  if (config.mobile === 'false' && /Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
     return
   }
 
@@ -18,7 +36,6 @@
   let aIdx = 0
 
   document.body.addEventListener('click', function (e) {
-    const config = GLOBAL_CONFIG.ClickShowText
     const text = config.text.split(',')
     const $span = document.createElement('span')
     if (config.random) {
