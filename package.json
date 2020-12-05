@@ -1,6 +1,6 @@
 {
   "name": "butterfly-extsrc",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "The external resource of hexo-theme-butterfly",
   "main": "package.json",
   "scripts": {
