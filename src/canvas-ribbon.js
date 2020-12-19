@@ -20,7 +20,7 @@
     z: attr(script, 'zIndex', -1), // z-index
     a: attr(script, 'alpha', 0.6), // alpha
     s: attr(script, 'size', 90), // size
-    c: attr(script, 'data-click', true) // click-to-change
+    c: script.getAttribute("data-click")
   }
 
   function attr (node, attr, defaultValue) {
