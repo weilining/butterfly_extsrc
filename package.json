@@ -1,6 +1,6 @@
 {
   "name": "butterfly-extsrc",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "The external resource of hexo-theme-butterfly",
   "main": "package.json",
   "scripts": {
@@ -20,7 +20,7 @@
     "url": "https://github.com/jerryc127/butterfly_extsrc/issues",
     "email": "wong@jerryc.me"
   },
-  "homepage": "https://demo.jerryc.me/",
+  "homepage": "https://butterfly.js.org/",
   "author": "Jerry <wong@jerryc.me>",
   "license": "Apache-2.0",
   "dependencies": {},
