@@ -38,7 +38,7 @@
   document.body.addEventListener('click', function (e) {
     const text = config.text.split(',')
     const $span = document.createElement('span')
-    if (config.random == false) {
+    if (config.random === 'true') {
       aIdx = Math.floor(Math.random() * text.length)
       $span.textContent = text[aIdx]
     } else {
